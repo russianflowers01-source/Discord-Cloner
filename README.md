@@ -1,4 +1,4 @@
-# Discord Server Cloner v7.0 ULTRA — Python Edition
+# Discord Server Cloner v7.0 AUTHOR ANGELS — Python Edition
 
 Мощный инструмент полного клонирования Discord-серверов.  
 **SmartBrain v7** — умный движок с bucket-aware rate-limit, автоматическим retry и диагностикой.
@@ -198,4 +198,4 @@ Python 3.10+
 
 ---
 
-© 2026 Discord Server Cloner v7.0 ULTRA — SmartBrain
+© 2026 Discord Server Cloner v7.0 AUTHOR ANGELS
