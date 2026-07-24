@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+
+{% block title %}Руководство по клонированию — dc://cloner v9.0{% endblock %}
+
+{% block content %}
+<!-- Глобальные стили для согласованности с другими страницами -->
+<style>
+  .glass-panel {
+    background: rgba(17, 24, 39, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(75, 85, 99, 0.4);
+  }
+  .step-card {
+    transition: all 0.3s ease;
+  }
+  .step-card:hover {
+    border-color: rgba(16, 185, 129, 0.5);
+    transform: translateX(4px);
+    box-shadow: 0 10px 30px -10px rgba(16, 185, 129, 0.1);
+  }
+  .step-number {
+    background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+</style>
+
+<section class="pt-24 pb-20 px-4 relative overflow-hidden">
+  <!-- Декоративный фоновый эффект -->
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-4xl bg-gradient-to-b from-cyan-500/10 via-transparent to-transparent pointer-events-none blur-3xl"></div>
+  
+  <div class="max-w-4xl mx-auto relative z-10">
+    
+    <!-- Заголовок -->
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-800/50 border border-gray-700 mb-6 text-[11px] text-cyan-400 font-medium tracking-wider uppercase">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        Пошаговая инструкция
+      </div>
+      <h1 class="text-3xl md:text-5xl font-bold text-white leading-tight mb-4">
+        Как клонировать сервер за <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">5 минут</span>
+      </h1>
+      <p class="text-gray-400 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+        Следуйте этим простым шагам. Мы добавили подсказки и меры предосторожности, чтобы процесс прошел максимально гладко и безопасно.
+      </p>
+    </div>
+
+    <!-- Шаги (Timeline) -->
+    <div class="space-y-6">
+      
+      <!-- Шаг 1 -->
+      <div class="glass-panel step-card rounded-xl p-5 flex flex-col sm:flex-row gap-5">
+        <div class="shrink-0">
+          <div class="w-12 h-12 rounded-xl bg-gray-800 border border-gray-700 flex items-center justify-center text-2xl font-bold step-number">1</div>
+        </div>
+        <div class="flex-1">
+          <h3 class="text-white font-semibold text-lg mb-2 flex items-center gap-2">
+            Получите User Token
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-500/10 text-rose-400 border border-rose-500/20 uppercase">Важно</span>
+          </h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-3">
+            Откройте Discord в браузере (Chrome/Edge). Нажмите <kbd class="px-1.5 py-0.5 rounded bg-gray-700 text-gray-300 text-xs font-mono">F12</kbd> (или ПКМ → "Просмотреть код"). 
+            Перейдите во вкладку <strong>Application</strong> → <strong>Local Storage</strong> → <code class="text-cyan-400 font-mono text-xs">https://discord.com</code>. 
+            Найдите ключ <code class="text-cyan-400 font-mono text-xs">token</code> и скопируйте его длинное значение.
+          </p>
+          <div class="flex items-start gap-2 p-3 rounded-lg bg-rose-500/5 border border-rose-500/10">
+            <svg class="w-4 h-4 text-rose-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+            <p class="text-rose-200/80 text-xs">Настоятельно рекомендуем использовать для клонирования <strong>альтернативный аккаунт</strong>, а не основной, чтобы избежать рисков.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Шаг 2 -->
+      <div class="glass-panel step-card rounded-xl p-5 flex flex-col sm:flex-row gap-5">
+        <div class="shrink-0">
+          <div class="w-12 h-12 rounded-xl bg-gray-800 border border-gray-700 flex items-center justify-center text-2xl font-bold step-number">2</div>
+        </div>
+        <div class="flex-1">
+          <h3 class="text-white font-semibold text-lg mb-2">Узнайте ID серверов</h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-3">
+            В настройках Discord перейдите в <strong>Расширенные</strong> и включите <strong>Режим разработчика</strong>. 
+            После этого нажмите правой кнопкой мыши на иконку сервера и выберите <strong>Копировать ID сервера</strong>.
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div class="p-3 rounded-lg bg-gray-800/50 border border-gray-700">
+              <span class="text-xs text-emerald-400 font-semibold uppercase tracking-wider block mb-1">Source (Источник)</span>
+              <p class="text-gray-400 text-xs">Сервер, <strong>с которого</strong> мы копируем структуру (роли, каналы).</p>
+            </div>
+            <div class="p-3 rounded-lg bg-gray-800/50 border border-gray-700">
+              <span class="text-xs text-cyan-400 font-semibold uppercase tracking-wider block mb-1">Target (Цель)</span>
+              <p class="text-gray-400 text-xs">Сервер, <strong>на который</strong> мы переносим данные. Вы должны быть там владельцем.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Шаг 3 -->
+      <div class="glass-panel step-card rounded-xl p-5 flex flex-col sm:flex-row gap-5">
+        <div class="shrink-0">
+          <div class="w-12 h-12 rounded-xl bg-gray-800 border border-gray-700 flex items-center justify-center text-2xl font-bold step-number">3</div>
+        </div>
+        <div class="flex-1">
+          <h3 class="text-white font-semibold text-lg mb-2">Заполните форму на главной</h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-3">
+            Вернитесь на главную страницу. Вставьте скопированный токен в первое поле. 
+            <span class="text-emerald-400 font-medium">Совет:</span> нажмите кнопку <strong>"Проверить"</strong> рядом с полем токена, чтобы убедиться, что он действителен и система видит ваш аккаунт.
+          </p>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Если у вас есть прокси для дополнительной анонимности, вставьте их в соответствующее поле (через запятую).
+          </p>
+        </div>
+      </div>
+
+      <!-- Шаг 4 -->
+      <div class="glass-panel step-card rounded-xl p-5 flex flex-col sm:flex-row gap-5">
+        <div class="shrink-0">
+          <div class="w-12 h-12 rounded-xl bg-gray-800 border border-gray-700 flex items-center justify-center text-2xl font-bold step-number">4</div>
+        </div>
+        <div class="flex-1">
+          <h3 class="text-white font-semibold text-lg mb-2">Настройте параметры клонирования</h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-3">
+            По умолчанию включены все опции для полного клонирования. Вы можете отключить ненужные пункты (например, не копировать эмодзи, если на целевом сервере нет буста).
+          </p>
+          <div class="flex items-start gap-2 p-3 rounded-lg bg-amber-500/5 border border-amber-500/10">
+            <svg class="w-4 h-4 text-amber-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+            <p class="text-amber-200/80 text-xs">Будьте крайне осторожны с галочкой <strong>"Очистить цель (Purge)"</strong>. Она <strong>безвозвратно удаляет</strong> все существующие каналы и роли на целевом сервере перед началом клонирования.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Шаг 5 -->
+      <div class="glass-panel step-card rounded-xl p-5 flex flex-col sm:flex-row gap-5">
+        <div class="shrink-0">
+          <div class="w-12 h-12 rounded-xl bg-gray-800 border border-gray-700 flex items-center justify-center text-2xl font-bold step-number">5</div>
+        </div>
+        <div class="flex-1">
+          <h3 class="text-white font-semibold text-lg mb-2">Запустите и наблюдайте</h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-3">
+            Нажмите кнопку <strong>"Запустить клонирование"</strong>. Внизу формы появится консоль логов в реальном времени и прогресс-бар. 
+            Процесс обычно занимает от 30 секунд до нескольких минут, в зависимости от размера сервера.
+          </p>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              Не закрывайте вкладку браузера до завершения.
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              Если система сделает паузу (Circuit Breaker), просто ждите — это защита вашего аккаунта от бана.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Блок Техподдержки -->
+    <div class="mt-16 text-center">
+      <div class="glass-panel rounded-2xl p-8 max-w-2xl mx-auto border-t-4 border-t-[#229ED9]">
+        <h3 class="text-white font-semibold text-xl mb-3">Что-то пошло не так?</h3>
+        <p class="text-gray-400 text-sm mb-6">
+          Если вы столкнулись с ошибкой, не можете получить токен или клонирование остановилось, наша команда готова помочь вам разобраться в ситуации.
+        </p>
+        <a href="https://t.me/Angels_Squads" target="_blank" class="inline-flex items-center gap-3 px-6 py-3 rounded-xl bg-[#229ED9]/10 border border-[#229ED9]/30 text-[#229ED9] hover:bg-[#229ED9]/20 hover:border-[#229ED9]/50 transition-all duration-300 font-semibold group">
+          <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+          Написать в техподдержку @Angels_Squads
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

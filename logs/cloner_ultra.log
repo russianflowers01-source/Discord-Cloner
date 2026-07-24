@@ -1,0 +1,86 @@
+2026-07-24 20:41:39 | INFO     | werkzeug | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5500
+2026-07-24 20:41:39 | INFO     | werkzeug | [33mPress CTRL+C to quit[0m
+2026-07-24 20:41:53 | INFO     | cloner.app | [67d4b035] GET / → 200 (4.999s)
+2026-07-24 20:41:53 | INFO     | werkzeug | 127.0.0.1 - - [24/Jul/2026 20:41:53] "GET / HTTP/1.1" 200 -
+2026-07-24 20:41:55 | INFO     | werkzeug | 127.0.0.1 - - [24/Jul/2026 20:41:55] "GET /socket.io/?EIO=4&transport=polling&t=P-LE2tq HTTP/1.1" 200 -
+2026-07-24 20:41:55 | INFO     | cloner.app | Client connected: jmcvOQYfHfDUUdkfAAAB
+2026-07-24 20:41:55 | INFO     | werkzeug | 127.0.0.1 - - [24/Jul/2026 20:41:55] "POST /socket.io/?EIO=4&transport=polling&t=P-LE2xj&sid=gSkDZxJc8wsYDcWpAAAA HTTP/1.1" 200 -
+2026-07-24 20:41:55 | INFO     | werkzeug | 127.0.0.1 - - [24/Jul/2026 20:41:55] "GET /socket.io/?EIO=4&transport=polling&t=P-LE2xk&sid=gSkDZxJc8wsYDcWpAAAA HTTP/1.1" 200 -
+2026-07-24 20:42:39 | INFO     | cloner.brain | SmartBrain v10 ULTRA init: tokens=1, proxies=0, TLS_Spoof=True
+2026-07-24 20:42:57 | INFO     | cloner.brain | SmartBrain v10 ULTRA init: tokens=1, proxies=0, TLS_Spoof=True
+2026-07-24 20:42:58 | ERROR    | cloner.brain | [Brain] Unexpected /users/@me: Failed to perform, curl: (35) Recv failure: Connection was reset. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-07-24 20:42:58 | INFO     | cloner.brain | SmartBrain v10 ULTRA shutdown
+2026-07-24 20:43:00 | INFO     | cloner.brain | SmartBrain v10 ULTRA init: tokens=1, proxies=0, TLS_Spoof=True
+2026-07-24 20:43:16 | ERROR    | cloner.brain | [Brain] Unexpected /users/@me: Failed to perform, curl: (35) Recv failure: Connection was reset. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-07-24 20:43:16 | INFO     | cloner.brain | SmartBrain v10 ULTRA shutdown
+2026-07-24 20:43:19 | ERROR    | cloner.brain | [Brain] Unexpected /users/@me: Failed to perform, curl: (35) Recv failure: Connection was reset. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-07-24 20:43:19 | INFO     | cloner.brain | SmartBrain v10 ULTRA shutdown
+2026-07-24 20:47:06 | INFO     | werkzeug | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5500
+2026-07-24 20:47:06 | INFO     | werkzeug | [33mPress CTRL+C to quit[0m
+2026-07-24 20:47:07 | INFO     | werkzeug | 127.0.0.1 - - [24/Jul/2026 20:47:07] "GET /socket.io/?EIO=4&transport=polling&t=P-LFEqp HTTP/1.1" 200 -
+2026-07-24 20:47:07 | INFO     | cloner.app | Client connected: vT_rFRV_RDa5DMtOAAAB
+2026-07-24 20:47:07 | INFO     | werkzeug | 127.0.0.1 - - [24/Jul/2026 20:47:07] "POST /socket.io/?EIO=4&transport=polling&t=P-LFF78&sid=KsxqhvRLYGgiJaPcAAAA HTTP/1.1" 200 -
+2026-07-24 20:47:07 | INFO     | werkzeug | 127.0.0.1 - - [24/Jul/2026 20:47:07] "GET /socket.io/?EIO=4&transport=polling&t=P-LFF7S&sid=KsxqhvRLYGgiJaPcAAAA HTTP/1.1" 200 -
+2026-07-24 20:47:11 | INFO     | cloner.app | Client disconnected: vT_rFRV_RDa5DMtOAAAB
+2026-07-24 20:47:11 | INFO     | cloner.app | [fd34b0c5] GET / → 200 (0.020s)
+2026-07-24 20:47:11 | INFO     | werkzeug | 127.0.0.1 - - [24/Jul/2026 20:47:11] "GET /socket.io/?EIO=4&transport=websocket&sid=KsxqhvRLYGgiJaPcAAAA HTTP/1.1" 200 -
+2026-07-24 20:47:11 | INFO     | werkzeug | 127.0.0.1 - - [24/Jul/2026 20:47:11] "GET / HTTP/1.1" 200 -
+2026-07-24 20:47:12 | INFO     | werkzeug | 127.0.0.1 - - [24/Jul/2026 20:47:12] "GET /socket.io/?EIO=4&transport=polling&t=P-LFGJ9 HTTP/1.1" 200 -
+2026-07-24 20:47:12 | INFO     | cloner.app | Client connected: 7gJIxFLABpQeQaIMAAAD
+2026-07-24 20:47:12 | INFO     | werkzeug | 127.0.0.1 - - [24/Jul/2026 20:47:12] "POST /socket.io/?EIO=4&transport=polling&t=P-LFGKF&sid=Q2PXMyECSddVa482AAAC HTTP/1.1" 200 -
+2026-07-24 20:47:12 | INFO     | werkzeug | 127.0.0.1 - - [24/Jul/2026 20:47:12] "GET /socket.io/?EIO=4&transport=polling&t=P-LFGKH&sid=Q2PXMyECSddVa482AAAC HTTP/1.1" 200 -
+2026-07-24 20:47:18 | INFO     | cloner.brain | SmartBrain v10 ULTRA init: tokens=1, proxies=0, TLS_Spoof=True
+2026-07-24 20:47:24 | INFO     | cloner.brain | SmartBrain v10 ULTRA init: tokens=1, proxies=0, TLS_Spoof=True
+2026-07-24 20:47:34 | INFO     | cloner.brain | SmartBrain v10 ULTRA init: tokens=1, proxies=0, TLS_Spoof=True
+2026-07-24 20:47:37 | INFO     | cloner.brain | SmartBrain v10 ULTRA init: tokens=1, proxies=0, TLS_Spoof=True
+2026-07-24 20:47:38 | INFO     | cloner.brain | SmartBrain v10 ULTRA init: tokens=1, proxies=0, TLS_Spoof=True
+2026-07-24 20:47:38 | INFO     | cloner.brain | SmartBrain v10 ULTRA init: tokens=1, proxies=0, TLS_Spoof=True
+2026-07-24 20:47:39 | INFO     | cloner.brain | SmartBrain v10 ULTRA init: tokens=1, proxies=0, TLS_Spoof=True
+2026-07-24 20:47:39 | ERROR    | cloner.brain | [Brain] Unexpected /users/@me: Failed to perform, curl: (35) Recv failure: Connection was reset. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-07-24 20:47:39 | INFO     | cloner.brain | SmartBrain v10 ULTRA shutdown
+2026-07-24 20:47:40 | INFO     | cloner.brain | SmartBrain v10 ULTRA init: tokens=1, proxies=0, TLS_Spoof=True
+2026-07-24 20:47:40 | INFO     | cloner.brain | SmartBrain v10 ULTRA init: tokens=1, proxies=0, TLS_Spoof=True
+2026-07-24 20:47:41 | INFO     | cloner.brain | SmartBrain v10 ULTRA init: tokens=1, proxies=0, TLS_Spoof=True
+2026-07-24 20:47:43 | ERROR    | cloner.brain | [Brain] Unexpected /users/@me: Failed to perform, curl: (35) Recv failure: Connection was reset. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-07-24 20:47:43 | INFO     | cloner.brain | SmartBrain v10 ULTRA shutdown
+2026-07-24 20:47:53 | ERROR    | cloner.brain | [Brain] Unexpected /users/@me: Failed to perform, curl: (35) Recv failure: Connection was reset. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-07-24 20:47:53 | INFO     | cloner.brain | SmartBrain v10 ULTRA shutdown
+2026-07-24 20:47:57 | ERROR    | cloner.brain | [Brain] Unexpected /users/@me: Failed to perform, curl: (35) Recv failure: Connection was reset. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-07-24 20:47:57 | INFO     | cloner.brain | SmartBrain v10 ULTRA shutdown
+2026-07-24 20:47:57 | ERROR    | cloner.brain | [Brain] Unexpected /users/@me: Failed to perform, curl: (35) Recv failure: Connection was reset. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-07-24 20:47:57 | INFO     | cloner.brain | SmartBrain v10 ULTRA shutdown
+2026-07-24 20:47:59 | ERROR    | cloner.brain | [Brain] Unexpected /users/@me: Failed to perform, curl: (35) Recv failure: Connection was reset. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-07-24 20:47:59 | INFO     | cloner.brain | SmartBrain v10 ULTRA shutdown
+2026-07-24 20:47:59 | ERROR    | cloner.brain | [Brain] Unexpected /users/@me: Failed to perform, curl: (35) Recv failure: Connection was reset. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-07-24 20:47:59 | INFO     | cloner.brain | SmartBrain v10 ULTRA shutdown
+2026-07-24 20:47:59 | ERROR    | cloner.brain | [Brain] Unexpected /users/@me: Failed to perform, curl: (35) Recv failure: Connection was reset. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-07-24 20:47:59 | INFO     | cloner.brain | SmartBrain v10 ULTRA shutdown
+2026-07-24 20:48:00 | ERROR    | cloner.brain | [Brain] Unexpected /users/@me: Failed to perform, curl: (35) Recv failure: Connection was reset. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-07-24 20:48:00 | INFO     | cloner.brain | SmartBrain v10 ULTRA shutdown
+2026-07-24 20:48:01 | ERROR    | cloner.brain | [Brain] Unexpected /users/@me: Failed to perform, curl: (35) Recv failure: Connection was reset. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-07-24 20:48:01 | INFO     | cloner.brain | SmartBrain v10 ULTRA shutdown
+2026-07-24 21:03:35 | INFO     | werkzeug | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5500
+2026-07-24 21:03:35 | INFO     | werkzeug | [33mPress CTRL+C to quit[0m
+2026-07-24 21:03:39 | INFO     | werkzeug | 127.0.0.1 - - [24/Jul/2026 21:03:39] "GET /socket.io/?EIO=4&transport=polling&t=P-LJ1WA HTTP/1.1" 200 -
+2026-07-24 21:03:39 | INFO     | cloner.app | Client connected: R2CmtSEMGyWT16o4AAAB
+2026-07-24 21:03:39 | INFO     | werkzeug | 127.0.0.1 - - [24/Jul/2026 21:03:39] "POST /socket.io/?EIO=4&transport=polling&t=P-LJ1WW&sid=_lk04KLYENMJHOU1AAAA HTTP/1.1" 200 -
+2026-07-24 21:03:39 | INFO     | werkzeug | 127.0.0.1 - - [24/Jul/2026 21:03:39] "GET /socket.io/?EIO=4&transport=polling&t=P-LJ1X8&sid=_lk04KLYENMJHOU1AAAA HTTP/1.1" 200 -
+2026-07-24 21:05:42 | INFO     | cloner.app | Client disconnected: R2CmtSEMGyWT16o4AAAB
+2026-07-24 21:05:42 | INFO     | werkzeug | 127.0.0.1 - - [24/Jul/2026 21:05:42] "GET /socket.io/?EIO=4&transport=websocket&sid=_lk04KLYENMJHOU1AAAA HTTP/1.1" 200 -
+2026-07-24 21:05:42 | INFO     | cloner.app | [a3cfdeee] GET / → 200 (0.064s)
+2026-07-24 21:05:43 | INFO     | werkzeug | 127.0.0.1 - - [24/Jul/2026 21:05:43] "GET / HTTP/1.1" 200 -
+2026-07-24 21:05:43 | INFO     | werkzeug | 127.0.0.1 - - [24/Jul/2026 21:05:43] "GET /socket.io/?EIO=4&transport=polling&t=P-LJVeA HTTP/1.1" 200 -
+2026-07-24 21:05:43 | INFO     | cloner.app | Client connected: M7YumLLG7wO8MmFmAAAD
+2026-07-24 21:05:43 | INFO     | werkzeug | 127.0.0.1 - - [24/Jul/2026 21:05:43] "POST /socket.io/?EIO=4&transport=polling&t=P-LJVfG&sid=zRv1D2SH2iBUoz0bAAAC HTTP/1.1" 200 -
+2026-07-24 21:05:43 | INFO     | werkzeug | 127.0.0.1 - - [24/Jul/2026 21:05:43] "GET /socket.io/?EIO=4&transport=polling&t=P-LJVfH&sid=zRv1D2SH2iBUoz0bAAAC HTTP/1.1" 200 -
+2026-07-24 21:05:54 | INFO     | cloner.brain | SmartBrain v10 ULTRA init: tokens=1, proxies=0, TLS_Spoof=False
+2026-07-24 21:05:55 | INFO     | cloner.brain | SmartBrain v10 ULTRA shutdown
+2026-07-24 21:22:16 | INFO     | cloner.brain | SmartBrain v10 ULTRA init: tokens=1, proxies=0, TLS_Spoof=False
+2026-07-24 21:22:16 | INFO     | cloner.brain | SmartBrain v10 ULTRA shutdown
+2026-07-24 21:22:35 | INFO     | cloner.app | Start clone request from M7YumLLG7wO8MmFmAAAD
+2026-07-24 21:22:35 | INFO     | cloner.brain | SmartBrain v10 ULTRA init: tokens=1, proxies=0, TLS_Spoof=False
+2026-07-24 21:22:38 | INFO     | cloner.brain | SmartBrain v10 ULTRA init: tokens=1, proxies=0, TLS_Spoof=False
+2026-07-24 21:24:05 | WARNING  | cloner.brain | [Brain] ⚠️ 429 bucket path=/guilds/1480651106311864521/roles wait=575.3s

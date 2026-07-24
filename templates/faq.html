@@ -1,0 +1,208 @@
+{% extends "base.html" %}
+
+{% block title %}Частые вопросы (FAQ) — dc://cloner v9.0{% endblock %}
+
+{% block content %}
+<!-- Глобальные стили для согласованности -->
+<style>
+  .glass-panel {
+    background: rgba(17, 24, 39, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(75, 85, 99, 0.4);
+  }
+  .faq-item {
+    transition: all 0.3s ease;
+  }
+  .faq-item:hover {
+    border-color: rgba(16, 185, 129, 0.4);
+  }
+  .faq-item.active {
+    border-color: rgba(16, 185, 129, 0.8);
+    background: rgba(17, 24, 39, 0.9);
+  }
+  .chevron {
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .faq-item.active .chevron {
+    transform: rotate(180deg);
+  }
+  .faq-answer {
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+    opacity: 0;
+  }
+  .faq-item.active .faq-answer {
+    opacity: 1;
+  }
+</style>
+
+<section class="pt-24 pb-20 px-4 relative overflow-hidden">
+  <!-- Декоративный фоновый эффект -->
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-4xl bg-gradient-to-b from-purple-500/10 via-transparent to-transparent pointer-events-none blur-3xl"></div>
+  
+  <div class="max-w-4xl mx-auto relative z-10">
+    
+    <!-- Заголовок -->
+    <div class="text-center mb-12">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-800/50 border border-gray-700 mb-6 text-[11px] text-purple-400 font-medium tracking-wider uppercase">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        База знаний
+      </div>
+      <h1 class="text-3xl md:text-5xl font-bold text-white leading-tight mb-4">
+        Частые <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">вопросы</span>
+      </h1>
+      <p class="text-gray-400 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+        Коротко и честно о том, как работает клонер v9.0 ULTRA, его возможностях и мерах безопасности.
+      </p>
+    </div>
+
+    <!-- Список FAQ (Аккордеон) -->
+    <div class="space-y-3" id="faq-list">
+
+      <!-- Вопрос 1: Безопасность -->
+      <div class="glass-panel faq-item rounded-xl overflow-hidden">
+        <button class="w-full flex items-center justify-between p-5 text-left focus:outline-none" onclick="toggleFaq(this)">
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400 shrink-0">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+            </div>
+            <span class="text-white font-semibold text-sm md:text-base">Это безопасно? Мой токен не украдут?</span>
+          </div>
+          <svg class="chevron w-5 h-5 text-gray-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="faq-answer max-h-0 overflow-hidden">
+          <div class="px-5 pb-5 pt-0 border-t border-gray-700/50 mt-2">
+            <p class="text-gray-300 text-sm leading-relaxed pt-4">
+              Абсолютно. Токен используется только для отправки запросов напрямую к API Discord. Он хранится <strong>исключительно в оперативной памяти (RAM)</strong> во время активной сессии и никогда не записывается на диск, в логи или базы данных. Кроме того, мы используем <span class="text-emerald-400">TLS Fingerprint Spoofing</span>, чтобы ваши запросы выглядели как обычный браузер, защищая аккаунт от подозрительной активности.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Вопрос 2: Что копируется -->
+      <div class="glass-panel faq-item rounded-xl overflow-hidden">
+        <button class="w-full flex items-center justify-between p-5 text-left focus:outline-none" onclick="toggleFaq(this)">
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-400 shrink-0">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"/></svg>
+            </div>
+            <span class="text-white font-semibold text-sm md:text-base">Что именно копируется?</span>
+          </div>
+          <svg class="chevron w-5 h-5 text-gray-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="faq-answer max-h-0 overflow-hidden">
+          <div class="px-5 pb-5 pt-0 border-t border-gray-700/50 mt-2">
+            <p class="text-gray-300 text-sm leading-relaxed pt-4">
+              В версии v9.0 ULTRA копируется практически всё: текстовые, голосовые каналы, категории, <strong>форумы и медиа-каналы</strong>, роли с правами и иерархией, эмодзи (статичные и GIF), стикеры, вебхуки, инвайты и даже <strong>правила AutoMod</strong>. 
+              <br><br>
+              <span class="text-amber-400">Важно:</span> История сообщений не копируется, так как API Discord не предоставляет такой возможности для пользовательских аккаунтов.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Вопрос 3: Время и "зависания" -->
+      <div class="glass-panel faq-item rounded-xl overflow-hidden">
+        <button class="w-full flex items-center justify-between p-5 text-left focus:outline-none" onclick="toggleFaq(this)">
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-lg bg-rose-500/10 flex items-center justify-center text-rose-400 shrink-0">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <span class="text-white font-semibold text-sm md:text-base">Клонирование "зависло" или выдало ошибку 429. Это нормально?</span>
+          </div>
+          <svg class="chevron w-5 h-5 text-gray-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="faq-answer max-h-0 overflow-hidden">
+          <div class="px-5 pb-5 pt-0 border-t border-gray-700/50 mt-2">
+            <p class="text-gray-300 text-sm leading-relaxed pt-4">
+              <strong>Да, это нормальная работа системы защиты.</strong> В v9.0 встроен механизм <span class="text-rose-400 font-medium">Circuit Breaker (Предохранитель)</span>. Если Discord начинает ограничивать частоту запросов (429 Too Many Requests), клонер <strong>намеренно делает паузу</strong> (обычно 30-60 секунд), чтобы дать вашему аккаунту "остыть" и избежать перманентного бана или теневой блокировки. 
+              <br><br>
+              Просто не закрывайте вкладку. Система автоматически возобновит работу, как только лимит сбросится.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Вопрос 4: Права доступа -->
+      <div class="glass-panel faq-item rounded-xl overflow-hidden">
+        <button class="w-full flex items-center justify-between p-5 text-left focus:outline-none" onclick="toggleFaq(this)">
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center text-indigo-400 shrink-0">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            </div>
+            <span class="text-white font-semibold text-sm md:text-base">Нужны ли права администратора?</span>
+          </div>
+          <svg class="chevron w-5 h-5 text-gray-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="faq-answer max-h-0 overflow-hidden">
+          <div class="px-5 pb-5 pt-0 border-t border-gray-700/50 mt-2">
+            <p class="text-gray-300 text-sm leading-relaxed pt-4">
+              На <strong>сервере-источнике</strong> достаточно прав на просмотр каналов и ролей. 
+              На <strong>целевом сервере</strong> токен <span class="text-indigo-400 font-medium">обязательно</span> должен иметь права Администратора. Кроме того, роль вашего аккаунта в иерархии должна находиться <strong>выше</strong> тех ролей, которые вы пытаетесь создать или выдать участникам.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Вопрос 5: Существующий сервер -->
+      <div class="glass-panel faq-item rounded-xl overflow-hidden">
+        <button class="w-full flex items-center justify-between p-5 text-left focus:outline-none" onclick="toggleFaq(this)">
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-400 shrink-0">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+            </div>
+            <span class="text-white font-semibold text-sm md:text-base">Можно ли клонировать в уже существующий сервер?</span>
+          </div>
+          <svg class="chevron w-5 h-5 text-gray-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="faq-answer max-h-0 overflow-hidden">
+          <div class="px-5 pb-5 pt-0 border-t border-gray-700/50 mt-2">
+            <p class="text-gray-300 text-sm leading-relaxed pt-4">
+              Да, просто введите его ID в поле "Цель". Новые каналы и роли добавятся к существующим. 
+              <br><br>
+              <span class="text-amber-400 font-medium">Внимание:</span> Если вы включите опцию <strong>"Очистить цель (Purge)"</strong>, клонер сначала <strong>безвозвратно удалит</strong> все текущие каналы и пользовательские роли на целевом сервере перед началом клонирования. Используйте это с осторожностью!
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Блок Техподдержки -->
+    <div class="mt-16 text-center">
+      <div class="glass-panel rounded-2xl p-8 max-w-2xl mx-auto border-t-4 border-t-[#229ED9]">
+        <h3 class="text-white font-semibold text-xl mb-3">Остались вопросы?</h3>
+        <p class="text-gray-400 text-sm mb-6">
+          Если вы не нашли ответ на свой вопрос, столкнулись с нестандартной ошибкой или нуждаетесь в помощи с настройкой, наша команда всегда на связи.
+        </p>
+        <a href="https://t.me/Angels_Squads" target="_blank" class="inline-flex items-center gap-3 px-6 py-3 rounded-xl bg-[#229ED9]/10 border border-[#229ED9]/30 text-[#229ED9] hover:bg-[#229ED9]/20 hover:border-[#229ED9]/50 transition-all duration-300 font-semibold group">
+          <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+          Написать в техподдержку @Angels_Squads
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+function toggleFaq(button) {
+  const item = button.parentElement;
+  const answer = button.nextElementSibling;
+  const isActive = item.classList.contains('active');
+
+  // Закрываем все остальные открытые элементы (поведение аккордеона)
+  document.querySelectorAll('.faq-item').forEach(el => {
+    el.classList.remove('active');
+    el.querySelector('.faq-answer').style.maxHeight = '0px';
+  });
+
+  // Если нажатый элемент не был активен, открываем его
+  if (!isActive) {
+    item.classList.add('active');
+    answer.style.maxHeight = answer.scrollHeight + 'px';
+  }
+}
+</script>
+{% endblock %}

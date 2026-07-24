@@ -1,0 +1,802 @@
+/**
+ * =============================================================================
+ *  Discord Server Cloner v9.0 ULTRA — Master Stylesheet
+ * =============================================================================
+ *  Единый файл стилей для всего проекта.
+ *  Включает: CSS переменные, glassmorphism, анимации, toast, scroll reveal.
+ * =============================================================================
+ */
+
+/* ─────────────────────────────────────────────────────────────
+   1. CSS CUSTOM PROPERTIES (Переменные для единообразия)
+   ───────────────────────────────────────────────────────────── */
+:root {
+  /* Цвета ULTRA палитры */
+  --color-bg: #0a0c10;
+  --color-surface: #11131a;
+  --color-card: #161922;
+  --color-border: #1e2330;
+  --color-border-hover: #374151;
+  
+  /* Акцентные цвета */
+  --color-emerald: #10b981;
+  --color-emerald-light: #34d399;
+  --color-cyan: #06b6d4;
+  --color-indigo: #6366f1;
+  --color-rose: #f43f5e;
+  --color-amber: #f59e0b;
+  --color-purple: #8b5cf6;
+  --color-telegram: #229ED9;
+  
+  /* Текст */
+  --color-text-primary: #f3f4f6;
+  --color-text-secondary: #9ca3af;
+  --color-text-dim: #6b7280;
+  --color-text-muted: #4b5563;
+  
+  /* Шрифты */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Monaco', monospace;
+  
+  /* Размеры и радиусы */
+  --radius-sm: 0.375rem;  /* 6px */
+  --radius-md: 0.5rem;    /* 8px */
+  --radius-lg: 0.75rem;   /* 12px */
+  --radius-xl: 1rem;      /* 16px */
+  --radius-full: 9999px;
+  
+  /* Переходы */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Тени */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.3);
+  --shadow-glow: 0 0 20px rgba(16, 185, 129, 0.2);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   2. БАЗОВЫЕ СТИЛИ (Reset & Typography)
+   ───────────────────────────────────────────────────────────── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-secondary);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+.font-mono {
+  font-family: var(--font-mono) !important;
+}
+
+/* Улучшенная типографика */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  color: var(--color-text-primary);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+a {
+  color: var(--color-emerald);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-emerald-light);
+}
+
+/* Блокировка скролла при открытом меню */
+body.menu-open {
+  overflow: hidden;
+  touch-action: none;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   3. КАСТОМНЫЙ СКРОЛЛБАР
+   ───────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-fast);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-border-hover);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   4. ФОНОВЫЕ ЭФФЕКТЫ (ULTRA Glow & Scanlines)
+   ───────────────────────────────────────────────────────────── */
+.bg-glow {
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.15;
+}
+
+.glow-1 {
+  width: 600px;
+  height: 600px;
+  background: var(--color-emerald);
+  top: -200px;
+  right: -100px;
+  animation: float 8s ease-in-out infinite;
+}
+
+.glow-2 {
+  width: 500px;
+  height: 500px;
+  background: var(--color-cyan);
+  bottom: -150px;
+  left: -100px;
+  animation: float 10s ease-in-out infinite reverse;
+}
+
+/* Субтильные сканлайны для атмосферы */
+.scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 255, 255, 0.015) 2px,
+    rgba(255, 255, 255, 0.015) 4px
+  );
+  pointer-events: none;
+  z-index: 50;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   5. GLASSMORPHISM ПАНЕЛИ
+   ───────────────────────────────────────────────────────────── */
+.glass-panel {
+  background: rgba(17, 19, 26, 0.7);
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  border: 1px solid rgba(30, 35, 48, 0.6);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.glass-panel-strong {
+  background: rgba(17, 19, 26, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(30, 35, 48, 0.8);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   6. UI КОМПОНЕНТЫ (Inputs, Buttons, Cards)
+   ───────────────────────────────────────────────────────────── */
+
+/* Текстовые инпуты */
+.ti, .input-ultra {
+  background: rgba(17, 19, 26, 0.6);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  padding: 0.625rem 0.75rem;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-normal);
+  width: 100%;
+}
+
+.ti:focus, .input-ultra:focus {
+  outline: none;
+  border-color: var(--color-emerald);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+  background: rgba(17, 19, 26, 0.9);
+}
+
+.ti::placeholder, .input-ultra::placeholder {
+  color: var(--color-text-muted);
+}
+
+/* Кнопки */
+.tb, .btn-ultra {
+  background: rgba(17, 19, 26, 0.6);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  padding: 0.625rem 1rem;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.tb:hover, .btn-ultra:hover {
+  border-color: var(--color-emerald);
+  color: var(--color-emerald);
+  background: rgba(16, 185, 129, 0.05);
+}
+
+.tb:active, .btn-ultra:active {
+  transform: scale(0.98);
+}
+
+/* Зеленая кнопка (Primary action) */
+.tb.g, .btn-primary {
+  border-color: var(--color-emerald);
+  color: var(--color-emerald);
+  background: rgba(16, 185, 129, 0.08);
+  font-weight: 500;
+}
+
+.tb.g:hover, .btn-primary:hover {
+  background: rgba(16, 185, 129, 0.15);
+  box-shadow: var(--shadow-glow);
+}
+
+.tb:disabled, .btn-ultra:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Карточки */
+.tc, .card-ultra {
+  background: rgba(17, 19, 26, 0.6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-normal);
+}
+
+.tc:hover, .card-ultra:hover {
+  border-color: var(--color-border-hover);
+  background: rgba(22, 25, 34, 0.8);
+}
+
+/* Select */
+.ts, .select-ultra {
+  background: rgba(17, 19, 26, 0.6);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  padding: 0.625rem 0.75rem;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  appearance: none;
+  transition: all var(--transition-normal);
+  width: 100%;
+}
+
+.ts:focus, .select-ultra:focus {
+  outline: none;
+  border-color: var(--color-emerald);
+}
+
+/* Кастомный чекбокс */
+.ck, .checkbox-ultra {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--color-border);
+  background: rgba(17, 19, 26, 0.6);
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-normal);
+}
+
+.ck:checked, .checkbox-ultra:checked {
+  border-color: var(--color-emerald);
+  background: var(--color-emerald);
+}
+
+.ck:checked::after, .checkbox-ultra:checked::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 5px;
+  height: 9px;
+  border: solid var(--color-bg);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* Toggle переключатель */
+.toggle-checkbox {
+  appearance: none;
+  width: 40px;
+  height: 24px;
+  background: var(--color-border);
+  border-radius: var(--radius-full);
+  position: relative;
+  cursor: pointer;
+  transition: background var(--transition-normal);
+  outline: none;
+}
+
+.toggle-checkbox::before {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: white;
+  border-radius: 50%;
+  top: 3px;
+  left: 3px;
+  transition: transform var(--transition-normal);
+  box-shadow: var(--shadow-sm);
+}
+
+.toggle-checkbox:checked {
+  background: var(--color-emerald);
+}
+
+.toggle-checkbox:checked::before {
+  transform: translateX(16px);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   7. TOAST УВЕДОМЛЕНИЯ
+   ───────────────────────────────────────────────────────────── */
+.toast-container {
+  position: fixed;
+  top: 5rem;
+  right: 1rem;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  pointer-events: none;
+  max-width: 400px;
+}
+
+.toast-item {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  border-radius: var(--radius-xl);
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  box-shadow: var(--shadow-lg);
+  transform: translateX(120%);
+  opacity: 0;
+  transition: all var(--transition-normal);
+}
+
+.toast-item.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.toast-success {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: var(--color-emerald-light);
+}
+
+.toast-error {
+  background: rgba(244, 63, 94, 0.1);
+  border: 1px solid rgba(244, 63, 94, 0.3);
+  color: #fb7185;
+}
+
+.toast-warning {
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  color: #fbbf24;
+}
+
+.toast-info {
+  background: rgba(6, 182, 212, 0.1);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  color: #22d3ee;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   8. LOG BOX (Консоль логов)
+   ───────────────────────────────────────────────────────────── */
+.log-box, .console-ultra {
+  background: rgba(10, 12, 16, 0.8);
+  border: 1px solid var(--color-border);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  padding: 0.75rem;
+  border-radius: var(--radius-md);
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.log-line {
+  padding: 0.125rem 0;
+  border-bottom: 1px solid rgba(30, 35, 48, 0.3);
+  transition: background var(--transition-fast);
+}
+
+.log-line:hover {
+  background: rgba(30, 35, 48, 0.2);
+}
+
+.log-line:last-child {
+  border-bottom: none;
+}
+
+/* Цветовые уровни логов */
+.log-info { color: var(--color-text-secondary); }
+.log-success { color: var(--color-emerald-light); font-weight: 600; }
+.log-warn { color: #fbbf24; }
+.log-error { color: #fb7185; font-weight: 600; }
+
+/* ─────────────────────────────────────────────────────────────
+   9. SCROLL REVEAL АНИМАЦИИ
+   ───────────────────────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(2rem);
+  transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Задержки для каскадного появления */
+.reveal-delay-1 { transition-delay: 100ms; }
+.reveal-delay-2 { transition-delay: 200ms; }
+.reveal-delay-3 { transition-delay: 300ms; }
+.reveal-delay-4 { transition-delay: 400ms; }
+.reveal-delay-5 { transition-delay: 500ms; }
+
+/* ─────────────────────────────────────────────────────────────
+   10. МОБИЛЬНОЕ МЕНЮ (Backdrop)
+   ───────────────────────────────────────────────────────────── */
+.nav-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 40;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-normal);
+}
+
+.nav-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   11. УТИЛИТЫ И АНИМАЦИИ
+   ───────────────────────────────────────────────────────────── */
+
+/* Разделитель */
+.sep {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-border) 20%,
+    var(--color-border) 80%,
+    transparent
+  );
+}
+
+/* Анимации */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+  50% { opacity: 1; box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+.fade-in { animation: fade-in-up 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.animate-blink { animation: blink 1s step-end infinite; }
+
+/* Спиннер загрузки */
+.spinner {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-top-color: var(--color-emerald);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Курсор терминала */
+.cursor-blink::after {
+  content: '█';
+  animation: blink 1s step-end infinite;
+  color: var(--color-emerald);
+  margin-left: 2px;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   12. GRADIENT ТЕКСТЫ
+   ───────────────────────────────────────────────────────────── */
+.gradient-text-emerald {
+  background: linear-gradient(135deg, var(--color-emerald) 0%, var(--color-cyan) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-purple {
+  background: linear-gradient(135deg, var(--color-purple) 0%, #ec4899 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   13. КНОПКА "ВВЕРХ" (Scroll to top)
+   ───────────────────────────────────────────────────────────── */
+.scroll-top-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: var(--color-emerald);
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  pointer-events: none;
+  transition: all var(--transition-normal);
+  z-index: 90;
+}
+
+.scroll-top-btn.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.scroll-top-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-glow);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   14. PROGRESS BAR
+   ───────────────────────────────────────────────────────────── */
+.progress-ultra {
+  height: 6px;
+  background: rgba(30, 35, 48, 0.5);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-ultra-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-emerald) 0%, var(--color-cyan) 100%);
+  border-radius: var(--radius-full);
+  transition: width var(--transition-slow);
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-ultra-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   15. KBD (Keyboard keys styling)
+   ───────────────────────────────────────────────────────────── */
+kbd {
+  display: inline-block;
+  padding: 0.125rem 0.375rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-primary);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  box-shadow: inset 0 -2px 0 var(--color-border);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   16. CODE БЛОКИ
+   ───────────────────────────────────────────────────────────── */
+code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  padding: 0.125rem 0.375rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-cyan);
+}
+
+pre {
+  background: rgba(10, 12, 16, 0.8);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   17. RESPONSIVE УТИЛИТЫ
+   ───────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .toast-container {
+    top: 4.5rem;
+    right: 0.5rem;
+    left: 0.5rem;
+    max-width: none;
+  }
+  
+  .scroll-top-btn {
+    bottom: 1rem;
+    right: 1rem;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   18. ПРИНТ СТИЛИ (для печати)
+   ───────────────────────────────────────────────────────────── */
+@media print {
+  .no-print,
+  .scanlines,
+  .bg-glow,
+  .nav-backdrop,
+  .toast-container,
+  .scroll-top-btn {
+    display: none !important;
+  }
+  
+  body {
+    background: white;
+    color: black;
+  }
+  
+  a {
+    color: blue;
+    text-decoration: underline;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   19. ДОСТУПНОСТЬ (Accessibility)
+   ───────────────────────────────────────────────────────────── */
+
+/* Скрыть визуально, но оставить для скринридеров */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Фокус для клавиатурной навигации */
+:focus-visible {
+  outline: 2px solid var(--color-emerald);
+  outline-offset: 2px;
+}
+
+/* Отключение анимаций для пользователей, которые это предпочитают */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

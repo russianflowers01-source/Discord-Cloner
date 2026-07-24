@@ -1,0 +1,242 @@
+{% extends "base.html" %}
+
+{% block title %}База знаний и Гайды — dc://cloner v9.0{% endblock %}
+
+{% block content %}
+<!-- Глобальные стили для согласованности -->
+<style>
+  .glass-panel {
+    background: rgba(17, 24, 39, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(75, 85, 99, 0.4);
+  }
+  .accordion-item {
+    transition: all 0.3s ease;
+  }
+  .accordion-item:hover {
+    border-color: rgba(16, 185, 129, 0.5);
+  }
+  .accordion-item.active {
+    border-color: rgba(16, 185, 129, 0.8);
+    background: rgba(17, 24, 39, 0.9);
+  }
+  .chevron {
+    transition: transform 0.3s ease;
+  }
+  .accordion-item.active .chevron {
+    transform: rotate(180deg);
+  }
+</style>
+
+<section class="pt-24 pb-20 px-4 relative overflow-hidden">
+  <!-- Декоративный фоновый эффект -->
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-4xl bg-gradient-to-b from-indigo-500/10 via-transparent to-transparent pointer-events-none blur-3xl"></div>
+  
+  <div class="max-w-4xl mx-auto relative z-10">
+    
+    <!-- Заголовок -->
+    <div class="text-center mb-12">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-800/50 border border-gray-700 mb-6 text-[11px] text-indigo-400 font-medium tracking-wider uppercase">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+        База знаний
+      </div>
+      <h1 class="text-3xl md:text-5xl font-bold text-white leading-tight mb-4">
+        Ответы на <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">ваши вопросы</span>
+      </h1>
+      <p class="text-gray-400 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+        Подробные инструкции, разбор новых функций v9.0 ULTRA и способы решения типичных проблем.
+      </p>
+    </div>
+
+    <!-- Аккордеон с гайдами -->
+    <div class="space-y-3">
+
+      <!-- Guide 1: Быстрый старт -->
+      <div class="glass-panel accordion-item rounded-xl overflow-hidden">
+        <button class="w-full flex items-center justify-between p-5 text-left focus:outline-none" onclick="toggleAccordion(this)">
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400 shrink-0">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </div>
+            <div>
+              <h3 class="text-white font-semibold text-base">🚀 Быстрый старт</h3>
+              <p class="text-gray-400 text-xs mt-0.5">От получения токена до готового клона за 5 минут</p>
+            </div>
+          </div>
+          <svg class="chevron w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="hidden px-5 pb-5 pt-0 border-t border-gray-700/50 mt-2">
+          <div class="space-y-3 text-sm text-gray-300 leading-relaxed pt-4">
+            <p><strong class="text-white">1.</strong> Откройте Discord в браузере (Chrome/Edge). Нажмите <kbd class="px-1.5 py-0.5 rounded bg-gray-700 text-gray-300 text-xs font-mono">F12</kbd> → вкладка <strong>Application</strong> → <strong>Local Storage</strong> → <code class="text-cyan-400 font-mono text-xs">https://discord.com</code>. Скопируйте значение ключа <code class="text-cyan-400 font-mono text-xs">token</code>.</p>
+            <p><strong class="text-white">2.</strong> Включите "Режим разработчика" в настройках Discord. ПКМ по серверу → "Копировать ID".</p>
+            <p><strong class="text-white">3.</strong> На главной странице вставьте токен и нажмите кнопку <span class="text-emerald-400 font-medium">"Проверить"</span>, чтобы убедиться в его валидности.</p>
+            <p><strong class="text-white">4.</strong> Введите ID источника и цели, настройте галочки и нажмите "Запустить".</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Guide 2: Роли и Иерархия (Обновлено под v9.0) -->
+      <div class="glass-panel accordion-item rounded-xl overflow-hidden">
+        <button class="w-full flex items-center justify-between p-5 text-left focus:outline-none" onclick="toggleAccordion(this)">
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center text-indigo-400 shrink-0">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            </div>
+            <div>
+              <h3 class="text-white font-semibold text-base">🔧 Роли и Иерархия</h3>
+              <p class="text-gray-400 text-xs mt-0.5">Лимиты, синхронизация порядка и обход ошибок</p>
+            </div>
+          </div>
+          <svg class="chevron w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="hidden px-5 pb-5 pt-0 border-t border-gray-700/50 mt-2">
+          <div class="space-y-3 text-sm text-gray-300 leading-relaxed pt-4">
+            <p>🔹 <strong>Жесткий лимит:</strong> Discord разрешает максимум <strong class="text-white">250 ролей</strong> на сервере. Если на источнике их больше, клонируются только первые 250 по иерархии.</p>
+            <p>🔹 <strong>Умная синхронизация (v9.0):</strong> Система создает роли снизу вверх, а затем принудительно синхронизирует их позиции, чтобы избежать ошибок иерархии ("роль не может быть выше роли создателя").</p>
+            <p>🔹 <strong>@everyone:</strong> Эта роль не создается заново, но её права и цвет обновляются в первую очередь.</p>
+            <p>🔹 <strong>Batch-выдача:</strong> При массовом назначении ролей участникам используется один запрос на человека, что обходит лимиты и предотвращает бан.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Guide 3: Каналы и AutoMod -->
+      <div class="glass-panel accordion-item rounded-xl overflow-hidden">
+        <button class="w-full flex items-center justify-between p-5 text-left focus:outline-none" onclick="toggleAccordion(this)">
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-400 shrink-0">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
+            </div>
+            <div>
+              <h3 class="text-white font-semibold text-base">📁 Каналы, Форумы и AutoMod</h3>
+              <p class="text-gray-400 text-xs mt-0.5">Поддержка всех типов, прав и правил модерации</p>
+            </div>
+          </div>
+          <svg class="chevron w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="hidden px-5 pb-5 pt-0 border-t border-gray-700/50 mt-2">
+          <div class="space-y-3 text-sm text-gray-300 leading-relaxed pt-4">
+            <p>🔹 Поддерживаются: Текстовые, Голосовые, Категории, Stage, <strong>Форумы</strong> и <strong>Медиа-каналы</strong> (включая теги форумов).</p>
+            <p>🔹 <strong>Права доступа:</strong> Переопределения прав (overwrites) копируются и автоматически привязываются к новым ID ролей на целевом сервере.</p>
+            <p>🔹 <strong>AutoMod (Новое в v9.0):</strong> Правила автоматической модерации (антиспам, блокировка слов) клонируются вместе с исключениями для ролей и каналов.</p>
+            <p>🔹 <strong>Purge (Очистка):</strong> Если включено, система сначала удаляет старые каналы (сначала обычные, потом категории), чтобы избежать конфликтов.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Guide 4: Эмодзи и Стикеры -->
+      <div class="glass-panel accordion-item rounded-xl overflow-hidden">
+        <button class="w-full flex items-center justify-between p-5 text-left focus:outline-none" onclick="toggleAccordion(this)">
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-400 shrink-0">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div>
+              <h3 class="text-white font-semibold text-base">🎨 Эмодзи и Стикеры</h3>
+              <p class="text-gray-400 text-xs mt-0.5">Лимиты слотов в зависимости от уровня буста</p>
+            </div>
+          </div>
+          <svg class="chevron w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="hidden px-5 pb-5 pt-0 border-t border-gray-700/50 mt-2">
+          <div class="space-y-3 text-sm text-gray-300 leading-relaxed pt-4">
+            <p>🔹 Копируются статичные и анимированные (GIF) эмодзи, а также стикеры.</p>
+            <p>🔹 <strong>Лимиты слотов для эмодзи:</strong><br>
+               &nbsp;&nbsp;• Без буста: <strong class="text-white">50</strong><br>
+               &nbsp;&nbsp;• Буст Уровень 1: <strong class="text-white">100</strong><br>
+               &nbsp;&nbsp;• Буст Уровень 2: <strong class="text-white">150</strong><br>
+               &nbsp;&nbsp;• Буст Уровень 3: <strong class="text-white">250</strong></p>
+            <p>🔹 Если слоты заканчиваются, клонер корректно пропускает оставшиеся эмодзи, <strong>не прерывая</strong> весь процесс клонирования.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Guide 5: Защита и Задержки (Circuit Breaker) -->
+      <div class="glass-panel accordion-item rounded-xl overflow-hidden">
+        <button class="w-full flex items-center justify-between p-5 text-left focus:outline-none" onclick="toggleAccordion(this)">
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-lg bg-rose-500/10 flex items-center justify-center text-rose-400 shrink-0">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div>
+              <h3 class="text-white font-semibold text-base">🛡️ Защита и Задержки (Circuit Breaker)</h3>
+              <p class="text-gray-400 text-xs mt-0.5">Почему клонер иногда делает паузы и как это спасает аккаунт</p>
+            </div>
+          </div>
+          <svg class="chevron w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="hidden px-5 pb-5 pt-0 border-t border-gray-700/50 mt-2">
+          <div class="space-y-3 text-sm text-gray-300 leading-relaxed pt-4">
+            <p>🔹 <strong>Stealth Mode:</strong> По умолчанию включена рандомизация задержек (jitter), чтобы имитировать действия человека.</p>
+            <p>🔹 <strong>Circuit Breaker (Предохранитель):</strong> Если система фиксирует несколько ошибок 429 (Rate Limit) подряд, она <strong>автоматически замораживает</strong> текущий токен на 60 секунд и переключается на другой (если их несколько). Это <span class="text-emerald-400 font-medium">не ошибка</span>, это защита вашего аккаунта от перманентного бана!</p>
+            <p>🔹 <strong>Batch Pauses:</strong> После каждых 5 ролей или 10 каналов делается обязательная пауза (4-6 сек) для сброса лимитов Discord API.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Guide 6: Расшифровка ошибок -->
+      <div class="glass-panel accordion-item rounded-xl overflow-hidden">
+        <button class="w-full flex items-center justify-between p-5 text-left focus:outline-none" onclick="toggleAccordion(this)">
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400 shrink-0">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+            </div>
+            <div>
+              <h3 class="text-white font-semibold text-base">🛠️ Расшифровка ошибок</h3>
+              <p class="text-gray-400 text-xs mt-0.5">Глубокая диагностика v9.0: понимаем истинную причину</p>
+            </div>
+          </div>
+          <svg class="chevron w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="hidden px-5 pb-5 pt-0 border-t border-gray-700/50 mt-2">
+          <div class="space-y-3 text-sm text-gray-300 leading-relaxed pt-4">
+            <p>🔹 <strong>403 Forbidden:</strong> Нет прав. Убедитесь, что у токена есть роль Администратора на целевом сервере, и что он находится <strong>выше</strong> создаваемых ролей в иерархии.</p>
+            <p>🔹 <strong>429 Too Many Requests:</strong> Сработал лимит. Система обработает его автоматически. Не закрывайте вкладку.</p>
+            <p>🔹 <strong>400 Bad Request (с деталями):</strong> Благодаря новой системе диагностики, вы увидите точную причину, например: <code class="text-rose-400 text-xs">400 name: Неверный формат</code> или <code class="text-rose-400 text-xs">400 color: Недопустимое значение</code>.</p>
+            <p>🔹 <strong>Токен недействителен:</strong> Срок действия истек или аккаунт был удален. Сгенерируйте новый токен.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Блок Техподдержки -->
+    <div class="mt-16 text-center">
+      <div class="glass-panel rounded-2xl p-8 max-w-2xl mx-auto border-t-4 border-t-[#229ED9]">
+        <h3 class="text-white font-semibold text-xl mb-3">Не нашли ответ на свой вопрос?</h3>
+        <p class="text-gray-400 text-sm mb-6">
+          Наша команда технической поддержки готова помочь вам с настройкой, диагностикой сложных ошибок или любыми другими вопросами по работе клонера.
+        </p>
+        <a href="https://t.me/Angels_Squads" target="_blank" class="inline-flex items-center gap-3 px-6 py-3 rounded-xl bg-[#229ED9]/10 border border-[#229ED9]/30 text-[#229ED9] hover:bg-[#229ED9]/20 hover:border-[#229ED9]/50 transition-all duration-300 font-semibold group">
+          <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+          Написать в техподдержку @Angels_Squads
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+function toggleAccordion(button) {
+  const item = button.parentElement;
+  const content = button.nextElementSibling;
+  const isActive = item.classList.contains('active');
+
+  // Закрываем все остальные аккордеоны (опционально, для чистоты интерфейса)
+  document.querySelectorAll('.accordion-item').forEach(el => {
+    el.classList.remove('active');
+    el.querySelector('.hidden').classList.add('hidden'); // Скрываем контент
+    // Убираем inline style display, если он был добавлен ранее, и возвращаем класс hidden
+    el.querySelector('.hidden').style.display = ''; 
+  });
+
+  // Если нажатый элемент не был активен, открываем его
+  if (!isActive) {
+    item.classList.add('active');
+    content.classList.remove('hidden');
+  }
+}
+</script>
+{% endblock %}

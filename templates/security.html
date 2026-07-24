@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+
+{% block title %}Безопасность и Защита — dc://cloner v9.0{% endblock %}
+
+{% block content %}
+<!-- Глобальные стили для согласованности с index.html -->
+<style>
+  .glass-panel {
+    background: rgba(17, 24, 39, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(75, 85, 99, 0.4);
+  }
+  .feature-card {
+    transition: all 0.3s ease;
+  }
+  .feature-card:hover {
+    border-color: rgba(16, 185, 129, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px -10px rgba(16, 185, 129, 0.15);
+  }
+</style>
+
+<section class="pt-24 pb-20 px-4 relative overflow-hidden">
+  <!-- Декоративный фоновый эффект -->
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-4xl bg-gradient-to-b from-emerald-500/10 via-transparent to-transparent pointer-events-none blur-3xl"></div>
+  
+  <div class="max-w-5xl mx-auto relative z-10">
+    
+    <!-- Заголовок -->
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-800/50 border border-gray-700 mb-6 text-[11px] text-emerald-400 font-medium tracking-wider uppercase">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        Архитектура безопасности v9.0
+      </div>
+      <h1 class="text-3xl md:text-5xl font-bold text-white leading-tight mb-4">
+        Ваша безопасность — <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">наш приоритет</span>
+      </h1>
+      <p class="text-gray-400 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+        Мы внедрили передовые методы обхода WAF и защиты аккаунтов, чтобы процесс клонирования был не только эффективным, но и максимально незаметным для систем защиты Discord.
+      </p>
+    </div>
+
+    <!-- Сетка преимуществ (Новые методы защиты) -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-12">
+      
+      <!-- Card 1 -->
+      <div class="glass-panel feature-card rounded-xl p-6">
+        <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400 mb-4">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+        </div>
+        <h3 class="text-white font-semibold text-base mb-2">Ephemeral Tokens</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">Токен существует только в оперативной памяти (RAM) во время активной сессии. Он никогда не записывается на диск, в логи или базы данных.</p>
+      </div>
+
+      <!-- Card 2 (NEW) -->
+      <div class="glass-panel feature-card rounded-xl p-6">
+        <div class="w-10 h-10 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-400 mb-4">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        </div>
+        <h3 class="text-white font-semibold text-base mb-2">TLS Fingerprint Spoofing</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">Мы подменяем TLS-рукопожатие (JA3/JA4), делая ваши запросы на 100% идентичными реальному браузеру Chrome. Это обходит базовые проверки Cloudflare.</p>
+      </div>
+
+      <!-- Card 3 (NEW) -->
+      <div class="glass-panel feature-card rounded-xl p-6">
+        <div class="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center text-indigo-400 mb-4">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <h3 class="text-white font-semibold text-base mb-2">Circuit Breaker</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">Умная система защиты от бана: при получении нескольких ошибок 429 (Rate Limit) токен автоматически "замораживается", предотвращая перманентную блокировку.</p>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="glass-panel feature-card rounded-xl p-6">
+        <div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400 mb-4">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        </div>
+        <h3 class="text-white font-semibold text-base mb-2">Payload Minification</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">Перед отправкой все JSON-запросы очищаются от пустых значений (`null`, `""`). Это снижает размер пакета и уменьшает шанс триггера WAF на подозрительные данные.</p>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="glass-panel feature-card rounded-xl p-6">
+        <div class="w-10 h-10 rounded-lg bg-rose-500/10 flex items-center justify-center text-rose-400 mb-4">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>
+        </div>
+        <h3 class="text-white font-semibold text-base mb-2">Zero Telemetry</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">Никакой аналитики, метрик или скрытого трекинга. Мы технически не знаем, какие серверы вы клонируете и кто вы такие.</p>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="glass-panel feature-card rounded-xl p-6">
+        <div class="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-400 mb-4">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/></svg>
+        </div>
+        <h3 class="text-white font-semibold text-base mb-2">Полный контроль</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">Прозрачный лог каждого действия в реальном времени. Мгновенная отмена процесса одной кнопкой в любой момент времени.</p>
+      </div>
+    </div>
+
+    <!-- Чек-лист безопасности пользователя -->
+    <div class="glass-panel rounded-2xl p-6 md:p-8 border-l-4 border-l-emerald-500">
+      <h3 class="text-white font-semibold text-lg mb-4 flex items-center gap-2">
+        <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+        Рекомендации по безопасности для пользователя
+      </h3>
+      <div class="grid md:grid-cols-2 gap-4">
+        <ul class="space-y-3 text-sm text-gray-300">
+          <li class="flex items-start gap-3">
+            <span class="text-emerald-400 mt-0.5">✓</span>
+            <span>Используйте <strong>отдельный (альт) аккаунт</strong> для клонирования, а не свой основной.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-emerald-400 mt-0.5">✓</span>
+            <span>Клонируйте в <strong>чистый, новый сервер</strong>, чтобы избежать конфликтов прав и случайного удаления важных каналов.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-emerald-400 mt-0.5">✓</span>
+            <span>Никогда не передавайте свой токен третьим лицам и не вставляйте его на подозрительных сайтах.</span>
+          </li>
+        </ul>
+        <ul class="space-y-3 text-sm text-gray-300">
+          <li class="flex items-start gap-3">
+            <span class="text-emerald-400 mt-0.5">✓</span>
+            <span>После завершения клонирования <strong>смените пароль Discord</strong>. Это мгновенно аннулирует все активные сессии и токены.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-emerald-400 mt-0.5">✓</span>
+            <span>Включите двухфакторную аутентификацию (2FA) на аккаунте, с которого выполняется клонирование.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-emerald-400 mt-0.5">✓</span>
+            <span>Если аккаунт получил ограничение (Rate Limit), <strong>остановите процесс</strong> и подождите 15-30 минут.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Блок Техподдержки (Доверие и помощь) -->
+    <div class="mt-12 text-center">
+      <p class="text-gray-400 text-sm mb-4">Столкнулись с необычным поведением, ошибками или есть вопросы по безопасности?</p>
+      <a href="https://t.me/Angels_Squads" target="_blank" class="inline-flex items-center gap-3 px-6 py-3 rounded-xl bg-[#229ED9]/10 border border-[#229ED9]/30 text-[#229ED9] hover:bg-[#229ED9]/20 hover:border-[#229ED9]/50 transition-all duration-300 font-semibold group">
+        <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        Написать в техподдержку @Angels_Squads
+        <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+      </a>
+      <p class="text-gray-500 text-xs mt-3">Мы отвечаем быстро и помогаем решить любую проблему с настройкой или запуском.</p>
+    </div>
+
+  </div>
+</section>
+{% endblock %}
